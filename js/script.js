@@ -49,7 +49,7 @@ const list = document.querySelector ('ul');
 for (let index = 0; index < items.length; index++) {
     let li = document.createElement('li');
     let sideImg = `<img src="${items[index]}" alt="">`;
-    li.innerHTML(sideImg);
+    li.innerHTML = sideImg;
     li.classList.add("thumb");
     list.append(li);
     
