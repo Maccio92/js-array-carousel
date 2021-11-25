@@ -41,6 +41,7 @@ const text = [
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
 ]
 
+// Visualizzazione delle IMG
 const imgContainer = document.querySelector ('.images-container');
 const sideContainer = document.querySelector ('.images-container-side');
 const list = document.querySelector ('ul');
@@ -48,7 +49,7 @@ const list = document.querySelector ('ul');
 for (let index = 0; index < items.length; index++) {
     let li = document.createElement('li');
     let sideImg = `<img src="${items[index]}" alt="">`;
-    li.append(sideImg);
+    li.innerHTML(sideImg);
     li.classList.add("thumb");
     list.append(li);
     
