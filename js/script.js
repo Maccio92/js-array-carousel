@@ -43,7 +43,6 @@ const text = [
 
 // Visualizzazione delle IMG
 const imgContainer = document.querySelector ('.images-container');
-const sideContainer = document.querySelector ('.images-container-side');
 const list = document.querySelector ('ul');
 
 for (let index = 0; index < items.length; index++) {
@@ -54,4 +53,6 @@ for (let index = 0; index < items.length; index++) {
     list.append(li);
     console.log('sideImg');
 }
-
+const imgLarge = document.createElement("img");
+  imgLarge.src = items[0];
+  imgContainer.append(imgLarge);
