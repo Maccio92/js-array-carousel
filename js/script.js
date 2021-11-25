@@ -50,9 +50,8 @@ for (let index = 0; index < items.length; index++) {
     let li = document.createElement('li');
     let sideImg = `<img src="${items[index]}" alt="">`;
     li.innerHTML = sideImg;
-    li.classList.add("thumb");
+    li.classList.add('thumb', 'opacity');
     list.append(li);
-    
     console.log('sideImg');
 }
 
