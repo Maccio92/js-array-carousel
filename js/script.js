@@ -43,16 +43,89 @@ const text = [
 
 // Visualizzazione delle IMG
 const imgContainer = document.querySelector ('.images-container');
-const list = document.querySelector ('ul');
+const thumbsContainer = document.querySelector ('.thumbs-container');
 
+// Ciclo per creare lo slider
 for (let index = 0; index < items.length; index++) {
-    let li = document.createElement('li');
-    let sideImg = `<img src="${items[index]}" alt="">`;
-    li.innerHTML = sideImg;
-    li.classList.add('thumb', 'opacity');
-    list.append(li);
-    console.log('sideImg');
+    let classElement = '';
+    // Cerchiamo il primo elemento
+    if (index == 0) {
+        classElement = 'first active';
+    // Cerchiamo l'ultimo elemento
+    } else if (index == items.length - 1) { 
+        classElement = 'last';
+    }
+    // Creazione e Visualizzazione nell HTML
+    const leftItem = `
+    <div class="item ${classElement}">
+        <img src="${items[index]}" alt"">
+        <div class="text">
+            <h3>${title[index]}</h3>
+            <p>${text[index]}</p>
+        </div>
+    </div>`;
+    console.log(items[index]);
+    const rightThumb = `
+        <div class="thumb ${classElement}">
+            <img src="${items[index]}" alt"">
+        </div>`;
+
+    imgContainer.innerHTML += leftItem;
+    thumbsContainer.innerHTML += rightThumb;
 }
-const imgLarge = document.createElement("img");
-  imgLarge.src = items[0];
-  imgContainer.append(imgLarge);
+
+const buttonNext = document.querySelector('.side-slider .thumbs-container .next');
+const buttonPrev = document.querySelector('.side-slider .thumbs-container .prev');
+
+buttonNext.addEventListener('click',
+    function () {
+
+        const elementActive = document.querySelector('.slider .images-container .item.active');
+        const thumbActive = document.querySelector('.side-slider .thumbs-container .thumb.active');
+        const listClasses = elementActive.classList;
+        let last = false;
+        for (let i = 0; i < listClasses.length; i++) {
+        
+            if (listClasses[i] == 'last') {
+                last = true;
+            }
+        }
+        let lastThumb = thumbActive.classList.contains('last');
+        if (last == false) {
+            elementActive.classList.remove('active');
+            const elementNext = elementActive.nextElementSibling;
+            elementNext.classList.add('active');
+        }
+        if (lastThumb == false) {
+            thumbActive.classList.remove('active');
+            const thumbNext = thumbActive.nextElementSibling;
+            thumbNext.classList.add('active');
+        }
+    }
+);
+
+buttonPrev.addEventListener('click',
+    function () {
+        const elementActive = document.querySelector('.slider .images-container .item.active');
+        const thumbActive = document.querySelector('.side-slider .thumbs-container .thumb.active');
+        const listClasses = elementActive.classList;
+        let first = false;
+        for (let i = 0; i < listClasses.length; i++) {
+
+            if (listClasses[i] == 'first') {
+                first = true;
+            }
+        }
+        let firstThumb = thumbActive.classList.contains('first');
+        if (first == false) {  
+            elementActive.classList.remove('active');
+            const elementPrev = elementActive.previousElementSibling;
+            elementPrev.classList.add('active');
+        }
+        if (firstThumb == false) {
+            thumbActive.classList.remove('active');
+            const thumbPrev = thumbActive.previousElementSibling;
+            thumbPrev.classList.add('active');
+        }
+    }
+);
